@@ -1,0 +1,8 @@
+: 1
+name: libuv
+version: 1.42.0-a.0.z
+summary: uv C++ library
+license: MIT
+url: https://github.com/libuv/libuv
+depends: * build2 >= 0.14.0
+depends: * bpkg >= 0.14.0

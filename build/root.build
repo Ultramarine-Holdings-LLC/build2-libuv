@@ -1,0 +1,6 @@
+using c
+
+h{*}: extension = h
+c{*}: extension = c
+
+src_upstream = $src_root/upstream

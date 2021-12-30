@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libuv/
+}
+
+export $out_root/libuv/$import.target
