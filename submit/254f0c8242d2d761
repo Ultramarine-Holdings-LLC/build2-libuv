@@ -1,0 +1,5 @@
+: 1
+name: libuv
+version: 1.42.0
+summary: Cross-platform asynchronous I/O
+license: MIT
