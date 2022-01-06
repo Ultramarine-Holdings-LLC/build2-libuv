@@ -1,8 +1,11 @@
 : 1
 name: libuv
 version: 1.42.0-a.0.z
-summary: uv C++ library
+summary: Cross-platform asynchronous I/O
 license: MIT
-url: https://github.com/libuv/libuv
+url: https://libuv.org
+doc-url: https://docs.libuv.org
+src-url: https://github.com/libuv/libuv
+description-file: upstream/README.md
 depends: * build2 >= 0.14.0
 depends: * bpkg >= 0.14.0
