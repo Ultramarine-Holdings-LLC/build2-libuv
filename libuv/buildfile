@@ -1,30 +1,28 @@
-os_sources =
-
-if ($cxx.target.class == 'windows')
+if ($c.target.class == 'windows')
 {
     c.poptions =+ "-DWIN32_LEAN_AND_MEAN" "-D_WIN32_WINNT=0x0602"
-    os_sources =+ \
-        src/win/c{async core detect-wakeup dl error fs fs-event getaddrinfo getnameinfo handle loop-watcher pipe thread poll process process-stdio signal snprintf stream tcp tty udp util winapi winsock}
+    c.libs =+ "psapi.lib" "user32.lib" "advapi32.lib" "iphlpapi.lib" "userenv.lib" "ws2_32.lib"
 }
 else
 {
     c.poptions =+ "-D_FILE_OFFSET_BITS=64" "-D_LARGEFILE_SOURCE"
-    os_sources =+ \
-        src/unix/c{async core dl fs getaddrinfo getnameinfo loop-watcher loop pipe poll process random-devurandom signal stream tcp thread tty udp}
 }
 
-if ($cxx.target.class == 'linux')
+if ($c.target.class == 'linux')
 {
     c.poptions =+ "-D_GNU_SOURCE" "-D_POSIX_C_SOURCE=200112"
-    os_sources =+ src/unix/c{proctitle linux-core linux-inotify linux-syscalls procfs-exepath random-getrandom random-sysctl-linux epoll}
+    c.libs =+ "-lpthread" "-ldl" "-lrt"
 }
 
 lib{uv}: \
     include/h{uv} \
     include/uv/h{aix android-ifaddrs bsd darwin errno linux os390 posix stdint-msvc2008 sunos threadpool tree unix version win} \
     src/c{fs-poll idna inet random strscpy threadpool timer uv-common uv-data-getter-setters version} \
-    src/h{heap-inl idna queue strscpy uv-common} \
-    $os_sources
+    src/h{heap-inl idna queue strscpy uv-common}
+
+lib{uv}: src/win/c{async core detect-wakeup dl error fs fs-event getaddrinfo getnameinfo handle loop-watcher pipe thread poll process process-stdio signal snprintf stream tcp tty udp util winapi winsock}: include = ($c.target.class == 'windows')
+lib{uv}: src/unix/c{async core dl fs getaddrinfo getnameinfo loop-watcher loop pipe poll process random-devurandom signal stream tcp thread tty udp}: include = ($c.target.class != 'windows')
+lib{uv}: src/unix/c{proctitle linux-core linux-inotify linux-syscalls procfs-exepath random-getrandom random-sysctl-linux epoll}: include = ($c.target.class == 'linux')
 
 c.poptions =+ "-I$src_base/include" "-I$src_base/src"
 
@@ -36,8 +34,10 @@ lib{uv}:
 {hbmis objs}{*}: c.poptions += "-DBUILDING_UV_SHARED=1"
 libs{uv}: c.export.poptions += "-DUSING_UV_SHARED=1"
 
-h{*}:
+h{*}: install = false
+
+include/h{*}:
 {
-  install         = include/libuv/
+  install         = include/
   install.subdirs = true
 }
