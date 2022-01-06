@@ -1,7 +1,7 @@
 if ($c.target.class == 'windows')
 {
     c.poptions =+ "-DWIN32_LEAN_AND_MEAN" "-D_WIN32_WINNT=0x0602"
-    c.libs =+ "user32.lib" "advapi32.lib" "iphlpapi.lib" "userenv.lib" "ws2_32.lib"
+    c.libs =+ "user32.lib" "advapi32.lib" "userenv.lib" "ws2_32.lib"
 }
 else
 {
