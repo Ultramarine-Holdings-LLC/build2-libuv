@@ -21,9 +21,9 @@ lib{uv}: \
     src/h{heap-inl idna queue strscpy uv-common}
 
 lib{uv}: src/win/c{async core detect-wakeup dl error fs fs-event getaddrinfo getnameinfo handle loop-watcher pipe thread poll process process-stdio signal snprintf stream tcp tty udp util winapi winsock}: include = ($c.target.class == 'windows')
-lib{uv}: src/win/h{handle-inl internal}: include = ($c.target.class == 'windows')
+lib{uv}: src/win/h{atomicops-inl fs-fs-hash-inl handle-inl internal req-inl stream-inl winapi winsock}: include = ($c.target.class == 'windows')
 lib{uv}: src/unix/c{async core dl fs getaddrinfo getnameinfo loop-watcher loop pipe poll process random-devurandom signal stream tcp thread tty udp}: include = ($c.target.class != 'windows')
-lib{uv}: src/unix/h{internal}: include = ($c.target.class != 'windows')
+lib{uv}: src/unix/h{atomic-ops internal spinlock}: include = ($c.target.class != 'windows')
 lib{uv}: src/unix/c{proctitle linux-core linux-inotify linux-syscalls procfs-exepath random-getrandom random-sysctl-linux epoll}: include = ($c.target.class == 'linux')
 lib{uv}: src/unix/h{linux-syscalls}: include = ($c.target.class == 'linux')
 
