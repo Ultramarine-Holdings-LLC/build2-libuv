@@ -1,7 +1,14 @@
 if ($c.target.class == 'windows')
 {
     c.poptions =+ "-DWIN32_LEAN_AND_MEAN" "-D_WIN32_WINNT=0x0602"
-    c.libs =+ "psapi.lib" "user32.lib" "advapi32.lib" "iphlpapi.lib" "userenv.lib" "ws2_32.lib"
+    if ($c.target.system == 'mingw32')
+    {
+        c.libs =+ "-lpsapi" "-luser32" "-ladvapi32" "-liphlpapi" "-luserenv" "-lws2_32"
+    }
+    else
+    {
+        c.libs =+ "psapi.lib" "user32.lib" "advapi32.lib" "iphlpapi.lib" "userenv.lib" "ws2_32.lib"
+    }
 }
 else
 {
