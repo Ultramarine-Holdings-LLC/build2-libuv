@@ -23,7 +23,7 @@ if ($c.target.class == 'linux')
 
 lib{uv}: \
     include/h{uv} \
-    include/uv/h{aix android-ifaddrs bsd darwin errno linux os390 posix stdint-msvc2008 sunos threadpool tree unix version win} \
+    include/uv/h{aix bsd darwin errno linux os390 posix stdint-msvc2008 sunos threadpool tree unix version win} \
     src/c{fs-poll idna inet random strscpy threadpool timer uv-common uv-data-getter-setters version} \
     src/h{heap-inl idna queue strscpy uv-common}
 
