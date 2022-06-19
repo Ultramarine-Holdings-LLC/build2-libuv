@@ -1,6 +1,6 @@
 : 1
 name: libuv
-version: 1.44.1+1
+version: 1.44.1+2
 summary: Cross-platform asynchronous I/O
 license: MIT
 url: https://libuv.org

@@ -39,6 +39,7 @@ lib{uv}: src/unix/h{atomic-ops internal spinlock}: include = ($c.target.class !=
 lib{uv}: src/unix/c{proctitle linux-core linux-inotify linux-syscalls procfs-exepath random-getrandom random-sysctl-linux epoll}: include = ($c.target.class == 'linux')
 lib{uv}: src/unix/h{linux-syscalls}: include = ($c.target.class == 'linux')
 lib{uv}: src/unix/c{darwin-proctitle darwin fsevents}: include = ($c.target.class == 'macos')
+lib{uv}: src/unix/h{darwin-stub}: include = ($c.target.class == 'macos')
 lib{uv}: src/unix/c{freebsd posix-hrtime bsd-proctitle bsd-ifaddrs kqueue random-getrandom}: include = ($c.target.class == 'freebsd')
 lib{uv}: src/unix/c{posix-hrtime bsd-proctitle bsd-ifaddrs kqueue random-getentropy openbsd}: include = ($c.target.class == 'openbsd')
 
